@@ -13,6 +13,7 @@ draw_initt = False
 gamel = False
 typee = "base"
 pro = False
+n = 0
 
 def draw_app(idenk,x,y):
     global gamel
@@ -59,6 +60,7 @@ def draw_button(text,x,y,w,h,idenk):
     global gamel
     global pro
     global mouses
+    global n
     kandinsky.fill_rect(x,y,w,h,(255,255,255))
     kandinsky.draw_string(text,x,y)
     if x < mousex - 5 + 15 and mousex - 5 < x + w and y < mousey - 5 + 15 and mousey - 5 < y + h and ion.keydown(KEY_EXE):
@@ -68,9 +70,12 @@ def draw_button(text,x,y,w,h,idenk):
         if idenk == "gamequit":
             gamel = False
             pro = False
+        if idenk == "clike+":
+            n += 1
             
 
 def draw_window(titel,x,y,w,h,idenk):
+    global n
     kandinsky.fill_rect(x,y,w,h,(44,48,52))
     kandinsky.draw_string(titel,x,y)
     if idenk == "start":
@@ -78,7 +83,8 @@ def draw_window(titel,x,y,w,h,idenk):
     if idenk != "start":
         draw_button("x",x + w - 10,y,10,10,"gamequit")
     if idenk == "exegame":
-        draw_button("cliks",x + 80,y + 50,50,10,"null")
+        draw_button("cliks",x + 80,y + 50,50,10,"clike+")
+        draw_string(str(n),x + 80,y + 70)
     if idenk == "progame":
         pass
 def draw_mouse():
@@ -120,3 +126,6 @@ def run(os):
                 draw_window("os",50,50,200,100,"start")
             draw_mouse()
             mouse_move()
+def ms(n):
+    global mouses
+    mouses = n
