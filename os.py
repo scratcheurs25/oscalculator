@@ -58,6 +58,7 @@ def draw_button(text,x,y,w,h,idenk):
     global draw_init
     global gamel
     global pro
+    global mouses
     kandinsky.fill_rect(x,y,w,h,(255,255,255))
     kandinsky.draw_string(text,x,y)
     if x < mousex - 5 + 15 and mousex - 5 < x + w and y < mousey - 5 + 15 and mousey - 5 < y + h and ion.keydown(KEY_EXE):
@@ -67,6 +68,7 @@ def draw_button(text,x,y,w,h,idenk):
         if idenk == "gamequit":
             gamel = False
             pro = False
+            
 
 def draw_window(titel,x,y,w,h,idenk):
     kandinsky.fill_rect(x,y,w,h,(44,48,52))
@@ -98,7 +100,12 @@ def mouse_move():
         mousey += mouses
 def run(os):
     global typee
-    while True:
+    global windows_cont
+    global draw_initt
+    if os == "n":
+            windows_cont = False
+            draw_initt = True
+    while os != "n":
         if os == "":
             typee = "base"
             draw_backgond()
@@ -113,4 +120,3 @@ def run(os):
                 draw_window("os",50,50,200,100,"start")
             draw_mouse()
             mouse_move()
-
